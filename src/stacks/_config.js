@@ -1,5 +1,5 @@
 export const header = {
-    title: 'LearnIt',
+    title: 'Languar',
     cardStyle: {
       backgroundColor: 'white'
     },

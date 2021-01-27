@@ -22,15 +22,12 @@ const VocabularyScreen = (props) => {
 
     // mapStateToProps
     const { words, lists, editMode, search } = props;
-
-
+ 
     // If searchbar is being used, filter all words for search results
     const searchResults = words.filter(word => {
         return word.english.toLowerCase().includes(search.toLowerCase()) ||
             word.spanish.toLowerCase().includes(search.toLowerCase())
     })
-
-
 
 
     // hidden edit button
@@ -78,7 +75,6 @@ const VocabularyScreen = (props) => {
 
     return (
         <>
-
             {/* Header with word count and Add new Word button */}
             <View style={styles.backgroundHeader}>
                 <View style={styles.header}>

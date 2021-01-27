@@ -4,7 +4,8 @@ import {
     CORRECT_ANSWER,
     CLEAR_REVIEW,
     GET_NEXT_WORD,
-    INCORRECT_ANSWER
+    INCORRECT_ANSWER,
+    GET_RANKING_LIST
 } from '../actions/types';
 
 const initialState = {
@@ -34,6 +35,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 list: payload,
+                rankLists: [],
                 loading: false,
                 currentWord: {
                     word: spanish,
@@ -42,6 +44,12 @@ export default function(state = initialState, action) {
                     dueDate: dueDate,
                     rating: rating
                 }
+            }
+
+        case GET_RANKING_LIST: 
+            return {
+                ...state,
+                rankingList: payload
             }
 
         case GET_EMPTY_REVIEW: 
@@ -80,8 +88,7 @@ export default function(state = initialState, action) {
             }
             
 
-        case GET_NEXT_WORD:
-            
+        case GET_NEXT_WORD:  
             return {
                 ...state,
                 correct: false,
@@ -102,8 +109,7 @@ export default function(state = initialState, action) {
                 incorrect: false,
             }
 
-        
-
+    
         default: 
             return {
                 ...state

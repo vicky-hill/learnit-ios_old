@@ -7,18 +7,17 @@ import { getReview } from '../actions/review';
 const RankingItem = (props) => {
 
     // RankingScreen props
-    const { emoji, title, rating, color, navigation } = props
+    const { emoji, title, rating, color, navigation } = props;
 
     // actions
     const { getReview } = props;
 
-    // mapStateToProps 
+    mapStateToProps 
     const { words } = props;
-
 
     // Get words based on rating prop
    const rankWords = words.filter(word => {
-       return word.rating >= rating[0] && word.rating <= rating[1]
+       return word.rating >= rating[0] && word.rating <= rating[1];
    })
    
     return (
@@ -34,8 +33,10 @@ const RankingItem = (props) => {
             <TouchableOpacity
                 style={[styles.count, { backgroundColor: color }]}
                 onPress={() => {
-                    getReview(rankWords);
-                    navigation.navigate('ReviewI');
+                    if(rankWords.length > 0) {
+                        getReview(rankWords);
+                        navigation.navigate('ReviewI');
+                    }
                 }}
             >
                 <Text style={styles.countTag}>{rankWords && rankWords.length}</Text>
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     words: state.words.words
+
 })
 
 export default connect(mapStateToProps, { getReview })(RankingItem);

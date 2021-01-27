@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { connect } from 'react-redux';
 import { deleteWord } from '../actions/words';
-import { openEdit, toggleSlide } from '../actions/utils';
+import { openEdit, toggleSlide, closeSlide } from '../actions/utils';
 import SlideScreen from '../components/SlideScreen';
 import WordListItem from '../components/WordListItem';
 import HiddenItemWithActions from '../components/HiddenItemWithActions';
@@ -15,11 +15,10 @@ const WordListScreen = (props) => {
     const { route, navigation } = props;
 
     // actions
-    const {  deleteWord, toggleSlide, openEdit } = props;
+    const {  deleteWord, toggleSlide, closeSlide, openEdit } = props;
     
     // mapStateToProps
     const { words, editMode, isHidden } = props;
-
 
     // VocabularyItem navigation.navigate()
     const { list } = route.params;
@@ -31,7 +30,9 @@ const WordListScreen = (props) => {
     })
 
     // If EditForm is open when going back, slide down EditForm
-    navigation.addListener('blur', () => !isHidden && toggleSlide())
+    navigation.addListener('blur', () => {
+        closeSlide();
+    })
 
     // Edit button
     const editRow = (rowMap, rowKey) => {
@@ -175,4 +176,4 @@ const mapStateToProps = state => ({
     isHidden: state.utils.slideScreen.isHidden
 })
 
-export default connect(mapStateToProps, { deleteWord, toggleSlide, openEdit })(WordListScreen);
+export default connect(mapStateToProps, { deleteWord, toggleSlide, closeSlide, openEdit })(WordListScreen);

@@ -2,6 +2,7 @@ import { Animated, Keyboard } from 'react-native';
 
 import {
     TOGGLE_SLIDESCREEN,
+    CLOSE_SLIDESCREEN,
     GET_SEARCH_TERM,
     OPEN_CREATE_LIST,
     OPEN_EDIT_LIST,
@@ -42,6 +43,15 @@ export const toggleSlide = () => async (dispatch, getState) => {
 
     dispatch({
         type: TOGGLE_SLIDESCREEN
+    })
+}
+
+/* ===================================
+   Close SlideScreen
+=================================== */
+export const closeSlide = () => dispatch => {
+    dispatch({
+        type: CLOSE_SLIDESCREEN
     })
 }
 

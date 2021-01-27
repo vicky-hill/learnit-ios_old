@@ -1,4 +1,6 @@
 import api from '../utils/api';
+import { setError } from './alerts';
+import { toggleSlide } from './utils';
 
 import {
     GET_LISTS,
@@ -34,16 +36,22 @@ export const getLists = () => async dispatch => {
                // ['new list title']
 export const saveList = (title) => async dispatch => {
 
-    const body = JSON.stringify({title: title[0]});
-
     try {
+    
+        if(!title[0]) {
+            return dispatch(setError('List title can\'t be empty'));
+        }
+    
+        const body = JSON.stringify({title: title[0]});
+
         const res = await api.post('/lists', body);
 
         dispatch({
             type: SAVE_LIST_SUCCESS,
-            // Eventually fix res.json({ list }) on backend
-            payload: res.data.list
+            payload: res.data
         })
+
+        dispatch(toggleSlide());
 
     } catch (err) {
 
@@ -62,14 +70,21 @@ export const saveList = (title) => async dispatch => {
                    // ['new list title'], id
 export const updateList = (title, id) => async dispatch => {
     try {
+
+        if(!title[0]) {
+            return dispatch(setError('List title can\'t be empty'));
+        }
+
         const body = JSON.stringify({ title: title[0] });
 
         const res = await api.put(`/lists/${id}`, body);
 
         dispatch({
             type: UPDATE_LIST_SUCCESS,
-            payload: res.data.list
+            payload: res.data
         })
+
+        dispatch(toggleSlide());
     } catch (err) {
         console.log(err.message)
     }
@@ -85,7 +100,7 @@ export const deleteList = id => async dispatch => {
 
         dispatch({
             type: DELETE_LIST_SUCCESS,
-            payload: res.data.list
+            payload: res.data
         })
 
     } catch (err) {

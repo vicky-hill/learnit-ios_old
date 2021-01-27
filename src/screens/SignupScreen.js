@@ -29,13 +29,15 @@ const SignupScreen = (props) => {
 
             {/* Pineapple and header */}
             <Image style={styles.pineapple} source={pineapple} />
-            <Text style={styles.title} >Create a new account</Text>
+            <Text style={styles.title} >Create a free account</Text>
 
             {/* Error message */}
             { error ? <ErrorMessage message={error} /> : null}
 
             {/* Username input */}
             <TextInput
+                autoCompleteType="off"
+                textContentType="oneTimeCode"
                 autoCapitalize='none'
                 autoCorrect={false}
                 style={styles.input}
@@ -47,6 +49,8 @@ const SignupScreen = (props) => {
 
             {/* Password input */}
             <TextInput secureTextEntry={true}
+                autoCompleteType="off"
+                textContentType="oneTimeCode"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input} placeholder="Password"
@@ -57,6 +61,8 @@ const SignupScreen = (props) => {
 
             {/* Password confirm */}
             <TextInput secureTextEntry={true}
+                autoCompleteType="off"
+                textContentType="oneTimeCode"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input} placeholder="Confirm Password"
@@ -66,20 +72,20 @@ const SignupScreen = (props) => {
             />
 
             {/* Signup button */}
-            <TouchableOpacity 
-                style={styles.button} 
-                onPress={() => register(username, password)}>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => register(username, password, password2)}>
                 <Text style={styles.buttonText}>Sign in</Text>
             </TouchableOpacity>
 
             {/* Link to Login */}
-            <TouchableOpacity 
-                style={styles.link} 
+            <TouchableOpacity
+                style={styles.link}
                 onPress={() => {
                     navigation.navigate('Login');
                     clearError();
                 }}>
-                <Text style={styles.linkText}>Already have an account? Sign in!</Text>
+                <Text style={styles.linkText}>Already have an account? Sign up!</Text>
             </TouchableOpacity>
         </View>
     )

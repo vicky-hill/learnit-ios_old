@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 
     title: {
         fontFamily: 'lato-light',
-        fontSize: 30,
+        fontSize: 26,
         marginBottom: 30
     },
 

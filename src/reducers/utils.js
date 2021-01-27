@@ -2,6 +2,7 @@ import { Animated } from 'react-native';
 
 import {
     TOGGLE_SLIDESCREEN,
+    CLOSE_SLIDESCREEN,
     GET_SEARCH_TERM, 
     OPEN_CREATE_LIST,
     OPEN_EDIT_LIST,
@@ -48,6 +49,15 @@ export default function (state = initialState, action) {
                 slideScreen: {
                     ...state.slideScreen,
                     isHidden: !state.slideScreen.isHidden
+                }
+            }
+
+        case CLOSE_SLIDESCREEN:
+            return {
+                ...state,
+                slideScreen: {
+                    bounceValue: new Animated.Value(1000),
+                    isHidden: true
                 }
             }
 

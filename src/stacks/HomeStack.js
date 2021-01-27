@@ -7,11 +7,13 @@ import { toggleSide } from '../actions/utils';
 
 // Screens
 import HomeScreen from '../screens/HomeScreen';
+import ReviewScreen from '../screens/ReviewScreen';
 import ReviewScreenI from '../screens/ReviewScreenI';
 import RankingScreen from '../screens/RankingScreen';
 
 
 const Home = createStackNavigator();
+
 
 const HomeStack = ({ toggleSide }) => (
     <Home.Navigator
@@ -29,9 +31,8 @@ const HomeStack = ({ toggleSide }) => (
                 <Ionicons style={{marginLeft: 30}} name="ios-menu-outline" size={30} color="black" onPress={toggleSide} /> 
             }} />
             
-        <Home.Screen name='ReviewI' component={ReviewScreenI}  />
+        <Home.Screen name='ReviewI' component={ReviewScreen}  />
         <Home.Screen name='Ranking' component={RankingScreen}  />
-        
 
     </Home.Navigator>
 )

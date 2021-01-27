@@ -20,6 +20,15 @@ export const login = (name, password) => async dispatch => {
     const body = JSON.stringify({ name, password });
 
     try {
+
+        if(!name) {
+            return dispatch(setError('Please enter a name'));
+        }
+
+        if(!password) {
+            return dispatch(setError('Please enter a password'));
+        }
+
         const res = await api.post('/user/login', body);
 
         await AsyncStorage.setItem('token', res.data.token)
@@ -33,7 +42,7 @@ export const login = (name, password) => async dispatch => {
         getUser(dispatch);
 
     } catch (err) {
-        dispatch(setError('Login failed'));
+        dispatch(setError(err.response.data.msg));
 
         dispatch({
             type: LOGIN_FAIL
@@ -45,8 +54,25 @@ export const login = (name, password) => async dispatch => {
 /* ===================================
    Register user
 =================================== */
-export const register = (name, password) => async dispatch => {
+export const register = (name, password, password2) => async dispatch => {
     try {
+
+        if(!name) {
+            return dispatch(setError('Please enter a name'));
+        }
+
+        if(name.includes(' ')) {
+            return dispatch(setError('Username can\'t include empty spaces'));
+        }
+
+        if(!password) {
+            return dispatch(setError('Please enter a password'));
+        }
+
+        if(password !== password2) {
+            return dispatch(setError('Passwords do not match'));
+        }
+
         const res = await api.post('/user/register', { name, password });
 
         await AsyncStorage.setItem('token', res.data.token)
@@ -59,7 +85,7 @@ export const register = (name, password) => async dispatch => {
         getUser(dispatch);
     } catch (err) {
         // dispatch(setError('err.response.data.msg'));
-        dispatch(setError('Register failed'));
+        dispatch(setError(err.response.data.msg));
 
         dispatch({
             type: REGISTER_FAIL
@@ -73,6 +99,10 @@ export const register = (name, password) => async dispatch => {
    Get user info
 =================================== */
 export const getUser = async (dispatch) => {
+
+    // Redirect to Home Screen after login
+    RootNavigation.navigate('Home');
+
     const res = await api.get('/user');
 
     dispatch({
@@ -80,8 +110,7 @@ export const getUser = async (dispatch) => {
         payload: res.data
     })
 
-    // Redirect to Home Screen after login
-    RootNavigation.navigate('Home');
+
 
 }
 

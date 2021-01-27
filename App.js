@@ -20,6 +20,7 @@ import HomeStack from './src/stacks/HomeStack';
 import VocabularyStack from './src/stacks/VocabularyStack';
 import AuthStack from './src/stacks/AuthStack';
 import ConjugationScreen from './src/screens/ConjugationScreen';
+import EditScreen from './src/screens/EditScreen';
 import { header } from './src/stacks/_config';
 
 
@@ -64,9 +65,9 @@ const App = () => {
           mode: 'modal'
         }}>
           <Root.Screen name='Auth' component={AuthStack} />
-          <Root.Screen name='Home' component={HomeStack} options={{animationEnabled: false}} />
+          <Root.Screen name='Home' component={HomeStack} options={{ animationEnabled: false }} />
           <Root.Screen name='Vocabulary' component={VocabularyStack} />
-          <Root.Screen name='Conjugation' component={ConjugationScreen} options={{headerShown: true, ...header}}/>
+          <Root.Screen name='Conjugation' component={ConjugationScreen} options={{ headerShown: true, ...header }} />
         </Root.Navigator>
       </NavigationContainer>
     </Provider>

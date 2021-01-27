@@ -29,13 +29,11 @@ const EditForm = (props) => {
 
             case 'createList':
                 // editData: ['listname']
-                toggleSlide();
                 return saveList(editData);
 
             case 'editList':
                 // editData: ['listname']
                 // editId: '45345q121'
-                toggleSlide();
                 return updateList(editData, editId)
 
             case 'createWord':
@@ -46,7 +44,6 @@ const EditForm = (props) => {
             case 'editWord':
                 // editData: ['word', 'translation']
                 // editId: wordId
-                toggleSlide();
                 return updateWord(editData, editId)
         }
 
@@ -100,7 +97,9 @@ const EditForm = (props) => {
                         <>
                             {/* firstField input */}
                             <TextInput
-                                autoCapitalize={'none'}
+                                autoCompleteType="off"
+                                textContentType="oneTimeCode"
+                                autoCapitalize='none'
                                 style={styles.input}
                                 placeholder={firstPlaceholder}
                                 value={firstField}
@@ -115,7 +114,9 @@ const EditForm = (props) => {
                         <>
                             {/* secondField input */}
                             <TextInput
-                                autoCapitalize={'none'}
+                                autoCompleteType="off"
+                                textContentType="oneTimeCode"
+                                autoCapitalize="none"
                                 style={styles.input}
                                 placeholder={secondPlaceholder}
                                 value={secondField}
@@ -144,7 +145,7 @@ const EditForm = (props) => {
 const styles = StyleSheet.create({
 
     container: {
-        marginTop: '30%',
+        marginTop: '45%',
         marginHorizontal: 35,
         alignItems: 'center'
     },

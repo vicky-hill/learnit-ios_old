@@ -21,6 +21,7 @@ const VocabularyItem = (props) => {
         // Navigates to WordListScreen and passes the list to be displayed
         <TouchableWithoutFeedback onPress={() => navigation.navigate('WordList', {'list': list})}>
             <View style={styles.container}>
+                
                 {/* List title and word count */}
                 <View>
                     <Text style={styles.title}>{list.title}</Text>

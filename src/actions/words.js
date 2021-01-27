@@ -1,5 +1,6 @@
 import api from '../utils/api';
 import { setError } from './alerts';
+import { toggleSlide } from './utils';
 
 import {
     GET_WORDS_SUCCESS,
@@ -41,6 +42,11 @@ export const saveWord = (editData, list) => async dispatch => {
     const body = JSON.stringify({ spanish: editData[0], english: editData[1], list });
 
     try {
+
+        if(!editData[0] || !editData[1]) {
+            return dispatch(setError('Fields can\'t be empty'));
+        }
+
         const res = await api.post('/words', body);
 
         dispatch({
@@ -64,6 +70,11 @@ export const saveWord = (editData, list) => async dispatch => {
                         // ['spanish', 'english'], id
 export const updateWord = (editData, id) => async dispatch => {
     try {
+
+        if(!editData[0] || !editData[1]) {
+            return dispatch(setError('Fields can\'t be empty'));
+        }
+
         const body = { spanish: editData[0], english: editData[1] }
         const res = await api.put(`/words/${id}`, body);
         
@@ -71,6 +82,8 @@ export const updateWord = (editData, id) => async dispatch => {
             type: UPDATE_WORD_SUCCESS,
             payload: res.data
         })
+
+        dispatch(toggleSlide());
     } catch (err) {
         dispatch(setError('Couldnt update word'))
 
@@ -90,7 +103,7 @@ export const deleteWord = id => async dispatch => {
 
         dispatch({
             type: DELETE_WORD_SUCCESS,
-            payload: res.data.word
+            payload: res.data
         })
 
     } catch (err) {

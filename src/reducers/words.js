@@ -6,6 +6,7 @@ import {
     DELETE_WORD_SUCCESS,
     UPDATE_WORD_SUCCESS,
     CORRECT_ANSWER,
+    INCORRECT_ANSWER
 } from '../actions/types';
 
 const initialState = {
@@ -56,7 +57,6 @@ export default function (state = initialState, action) {
         case CORRECT_ANSWER: {
 
             // Update word when doing a ranking review
-            // Consider creating reducer for ranking
             return {
                 ...state,
                 words: state.words.map(word => {
@@ -67,7 +67,23 @@ export default function (state = initialState, action) {
                             rating: word.rating + 1
                         }
                     } else {
-                        return word
+                        return word;
+                    }
+                })
+            }
+        }
+
+        case INCORRECT_ANSWER: {
+            return {
+                ...state,
+                words: state.words.map(word => {
+                    if (word._id === payload) {
+                        return {
+                            ...word,
+                            rating: 0
+                        }
+                    } else {
+                        return word;
                     }
                 })
             }

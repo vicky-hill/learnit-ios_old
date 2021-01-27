@@ -3,6 +3,7 @@ import api from '../utils/api';
 import {
     GET_REVIEW_SUCCESS,
     GET_EMPTY_REVIEW,
+    GET_RANKING_LIST,
     CORRECT_ANSWER,
     CLEAR_REVIEW,
     GET_NEXT_WORD,
@@ -43,6 +44,7 @@ export const getReview = (ranking) => async dispatch => {
 }
 
 
+
 /* ===================================
    Check correct word
 =================================== */
@@ -60,15 +62,16 @@ export const checkAnswer = (answer, word, id) => async (dispatch, getState) => {
             rating: getState().review.currentWord.rating + 1,
             dueDate: getNewDuedate(getState().review.currentWord.rating)
         }
+        
 
         // Update word in database
         await api.put(`/words/${id}`, body);
 
-        getNextWord(dispatch, getState, true); 
-    }
+        dispatch(getNextWord(true))
+    } 
 }
 
-export const showAnswer = (answer, word, id) => (dispatch, getState) => {
+export const showAnswer = (answer, word, id) => dispatch => {
     if (answer !== word) {
 
         dispatch({
@@ -76,7 +79,7 @@ export const showAnswer = (answer, word, id) => (dispatch, getState) => {
             payload: id
         })
 
-        getNextWord(dispatch, getState, false);
+        dispatch(getNextWord(false));
     }
 
 }
@@ -85,7 +88,7 @@ export const showAnswer = (answer, word, id) => (dispatch, getState) => {
 /* ===================================
    Get next word
 =================================== */
-const getNextWord = (dispatch, getState, correct) => {
+export const getNextWord = (correct) => (dispatch, getState) => {
     // Wait two seconds, then load next word
     setTimeout(() => {
 

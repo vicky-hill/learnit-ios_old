@@ -41,14 +41,14 @@ const styles = StyleSheet.create({
     },
 
     children: {
-        width: '45%',
+        width: '65%',
         backgroundColor: '#fff'
     },
 
     overlay: {
         backgroundColor: '#2e2c2c1a',
         backgroundColor: 'transparent',
-        width: '55%',
+        width: '30%',
         height: '100%'
     }
 })
