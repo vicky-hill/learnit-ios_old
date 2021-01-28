@@ -20,9 +20,9 @@ const RankingScreen = (props) => {
     return (
         <>
             {/* Header */}
-            <View style={styles.backgroundHeader}>
+            {/* <View style={styles.backgroundHeader}>
                 <Text style={styles.title}>Ranking</Text>
-            </View>
+            </View> */}
 
             <View style={styles.backgroundContent}>
                 <RankingItem emoji="🎓" title="Mastered" rating={[18, 200]} color="#40D642" navigation={navigation} />
@@ -45,12 +45,13 @@ const styles = StyleSheet.create({
 
     backgroundHeader: {
         padding: 30,
-        paddingTop: 50
+        paddingBottom: 10,
+        paddingTop: 40
     },
 
     backgroundContent: {
         flex: 1,
-        marginTop: 10
+        marginTop: '7%'
     },
 
     title: {

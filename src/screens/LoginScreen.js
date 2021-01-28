@@ -74,8 +74,10 @@ const LoginScreen = (props) => {
                 style={styles.button}
                 onPress={() => {
                     login(username, password);
-                    setUsername('');
-                    setPassword('');
+                    setTimeout(() => {
+                        setUsername('');
+                        setPassword('');
+                    }, 2000);
                 }}>
                 <Text style={styles.buttonText}>Sign in</Text>
             </TouchableOpacity>

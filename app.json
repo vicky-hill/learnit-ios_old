@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "LearnIt",
-    "slug": "learnit",
+    "name": "Languar",
+    "slug": "languar",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,7 +18,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.vickyungemach.learnit"
+      "bundleIdentifier": "com.vickyungemach.languar"
     },
     "android": {
       "adaptiveIcon": {

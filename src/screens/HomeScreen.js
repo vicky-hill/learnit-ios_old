@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     },
 
     circle: {
-        bottom: 50,
+        bottom: '20%',
         alignItems: 'center',
         justifyContent: 'center'
     },

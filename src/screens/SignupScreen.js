@@ -74,7 +74,14 @@ const SignupScreen = (props) => {
             {/* Signup button */}
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => register(username, password, password2)}>
+                onPress={() => {
+                    register(username, password, password2);
+                    setTimeout(() => {
+                        setUsername('');
+                        setPassword('');
+                        setPassword2('');
+                    }, 2000);
+                }}>
                 <Text style={styles.buttonText}>Sign in</Text>
             </TouchableOpacity>
 

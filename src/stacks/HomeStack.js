@@ -32,7 +32,7 @@ const HomeStack = ({ toggleSide }) => (
             }} />
             
         <Home.Screen name='ReviewI' component={ReviewScreen}  />
-        <Home.Screen name='Ranking' component={RankingScreen}  />
+        <Home.Screen name='Ranking' component={RankingScreen} options={ {title: 'Ranking'}}  />
 
     </Home.Navigator>
 )
